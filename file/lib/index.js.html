@@ -32,7 +32,7 @@
 <nav class="navigation" data-ice="nav"><div>
   <ul>
     
-  <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-createActionBlueprint">createActionBlueprint</a></span></span></li>
+  <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-createBlueprint">createBlueprint</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-createBlueprintsTranslator">createBlueprintsTranslator</a></span></span></li>
 </ul>
 </div>
@@ -50,33 +50,37 @@ import { createAction } from &apos;redux-actions&apos;
 //export const createActionDispatcher = context =&gt; handler =&gt; store =&gt; handler(dispatcher(dispatch, getState), context)
 
 
-/** Allows the user of lib to define custom redux actions that an action creator retrieved from at a later time via a type map. */
-export const createActionBlueprint = (actionName, payloadCreator = args =&gt; args, metaCreator = args =&gt; args) =&gt; createActionType =&gt; {
-  //console.warn(&apos;CREATING ACTION BLUEPRINT&apos;, actionName, payloadCreator, metaCreator)
+/**
+ * Creates an action blueprint. Allows delayed assignment of action type which is useful for library designers requiring namespaced action types.
+ * @example &lt;caption&gt;Create an action blueprint then translate it to get its action creator at a later time.&lt;/caption&gt;
+ * const createActionType = actionName =&gt; `SOME_REDUX_LIB_${actionName}`
+ * let blueprint = createBlueprint(&apos;MOUSE_EVENT&apos;, (x, y) =&gt; ({x, y}), eventType =&gt; ({ eventType }))
+ * let actionCreator = blueprint(createActionType)
+ * @param  {String}   actionName     The name of the action (will be constructed at later time to get action type.)
+ * @param  {Function} payloadCreator Function that accepts action args and returns a FSA action payload.
+ * @param  {Function} metaCreator    Function that accepts action args and returns a FSA meta payload.
+ * @return {Function}                An action blueprint function that accepts an action type creator function as param to return an action creator.
+ */
+export const createBlueprint = (actionName, payloadCreator = args =&gt; args, metaCreator = args =&gt; args) =&gt; createActionType =&gt; {
   return createAction(createActionType(actionName), args =&gt; payloadCreator(args), args =&gt; metaCreator(args))
-
 }
 
-/** Creates a translator that turns actionBlueprints into actionCreators */
-export const createBlueprintsTranslator = createActionType =&gt; actionBlueprints =&gt; {
-  assert.ok(actionBlueprints, &apos;actionBlueprints are required&apos;)
-  if(Array.isArray(actionBlueprints))
-    return actionBlueprints.map(x =&gt; actionBlueprints(createActionType))
-  assert(typeof actionBlueprints === &apos;object&apos;, &apos;actionBlueprints must be array or object&apos;)
-  return Object.keys(actionBlueprints).reduce((actionCreators, x) =&gt; {
-    actionCreators[x] = actionBlueprints[x](createActionType)
+
+/**
+ * Creates a translator that turns actionBlueprints into redux-actions FSA actionCreators
+ * @param  {Function} createActionType    Function that accepts an action name and returns an action type
+ * @return {actionCreator}                An redux-actions FSA action creator
+ */
+export const createBlueprintsTranslator = createActionType =&gt; blueprints =&gt; {
+  assert.ok(blueprints, &apos;blueprints are required&apos;)
+  if(Array.isArray(blueprints))
+    return blueprints.map(x =&gt; blueprint(createActionType))
+  assert(typeof blueprints === &apos;object&apos;, &apos;blueprints must be array or object&apos;)
+  return Object.keys(blueprints).reduce((actionCreators, x) =&gt; {
+    actionCreators[x] = blueprints[x](createActionType)
     return actionCreators
   }, {})
 }
-
-//export const createDelayableActionBlueprint = (actionName, payloadCreator, metaCreator) =&gt; delay =&gt; createActionBlueprint(actionName, payloadCreator, meta =&gt; Object.assign(metaCreator(meta), { delay }))
-
-// metaCreator(meta) === Object.assign(meta, { delay })
-// delayableActionBlueprint(delay) === actionBlueprint
-
-// actionBlueprint(createActionType) === actionCreator
-
-// actionDefinition === { type, payloadCreactor, ?metaCreator }
 </code></pre>
 
 </div>
