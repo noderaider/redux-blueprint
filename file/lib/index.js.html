@@ -41,14 +41,6 @@
 <div class="content" data-ice="content"><h1 data-ice="title">lib/index.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { assert } from &apos;chai&apos;
 import { createAction } from &apos;redux-actions&apos;
-/**
- * Configures a Flux Standard Action creator injected with the libraries dispatcher and context.
- * @example &lt;caption&gt;Exports a Flux Standard Action creator that takes a handler injected with the libraries dispatcher and context.
- * export const createSomeUserAction = configureDispatcherAction((dispatcher, context) =&gt; dispatcher.action.execute(&apos;create-some-user-action&apos;))
- * @param  {function} handler: (context, dispatcher) =&gt; { ... }
- */
-//export const createActionDispatcher = context =&gt; handler =&gt; store =&gt; handler(dispatcher(dispatch, getState), context)
-
 
 /**
  * Creates an action blueprint. Allows delayed assignment of action type which is useful for library designers requiring namespaced action types.
