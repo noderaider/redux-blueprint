@@ -1,13 +1,5 @@
 import { assert } from 'chai'
 import { createAction } from 'redux-actions'
-/**
- * Configures a Flux Standard Action creator injected with the libraries dispatcher and context.
- * @example <caption>Exports a Flux Standard Action creator that takes a handler injected with the libraries dispatcher and context.
- * export const createSomeUserAction = configureDispatcherAction((dispatcher, context) => dispatcher.action.execute('create-some-user-action'))
- * @param  {function} handler: (context, dispatcher) => { ... }
- */
-//export const createActionDispatcher = context => handler => store => handler(dispatcher(dispatch, getState), context)
-
 
 /**
  * Creates an action blueprint. Allows delayed assignment of action type which is useful for library designers requiring namespaced action types.
