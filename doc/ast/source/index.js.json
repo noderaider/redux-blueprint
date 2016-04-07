@@ -1,0 +1,2383 @@
+{
+  "type": "Program",
+  "start": 0,
+  "end": 2180,
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 39,
+      "column": 0
+    }
+  },
+  "sourceType": "module",
+  "body": [
+    {
+      "type": "ImportDeclaration",
+      "start": 0,
+      "end": 29,
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 29
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportSpecifier",
+          "start": 9,
+          "end": 15,
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 9
+            },
+            "end": {
+              "line": 1,
+              "column": 15
+            }
+          },
+          "imported": {
+            "type": "Identifier",
+            "start": 9,
+            "end": 15,
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 9
+              },
+              "end": {
+                "line": 1,
+                "column": 15
+              }
+            },
+            "name": "assert"
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 9,
+            "end": 15,
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 9
+              },
+              "end": {
+                "line": 1,
+                "column": 15
+              }
+            },
+            "name": "assert"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 23,
+        "end": 29,
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 23
+          },
+          "end": {
+            "line": 1,
+            "column": 29
+          }
+        },
+        "value": "chai",
+        "rawValue": "chai",
+        "raw": "'chai'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 31,
+      "end": 75,
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 0
+        },
+        "end": {
+          "line": 2,
+          "column": 44
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportSpecifier",
+          "start": 40,
+          "end": 52,
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 9
+            },
+            "end": {
+              "line": 2,
+              "column": 21
+            }
+          },
+          "imported": {
+            "type": "Identifier",
+            "start": 40,
+            "end": 52,
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 9
+              },
+              "end": {
+                "line": 2,
+                "column": 21
+              }
+            },
+            "name": "createAction"
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 40,
+            "end": 52,
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 9
+              },
+              "end": {
+                "line": 2,
+                "column": 21
+              }
+            },
+            "name": "createAction"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 60,
+        "end": 75,
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 29
+          },
+          "end": {
+            "line": 2,
+            "column": 44
+          }
+        },
+        "value": "redux-actions",
+        "rawValue": "redux-actions",
+        "raw": "'redux-actions'",
+        "leadingComments": null,
+        "trailingComments": null
+      },
+      "trailingComments": [
+        {
+          "type": "Block",
+          "value": "*\r\n * Configures a Flux Standard Action creator injected with the libraries dispatcher and context.\r\n * @example <caption>Exports a Flux Standard Action creator that takes a handler injected with the libraries dispatcher and context.\r\n * export const createSomeUserAction = configureDispatcherAction((dispatcher, context) => dispatcher.action.execute('create-some-user-action'))\r\n * @param  {function} handler: (context, dispatcher) => { ... }\r\n ",
+          "start": 77,
+          "end": 527,
+          "loc": {
+            "start": {
+              "line": 3,
+              "column": 0
+            },
+            "end": {
+              "line": 8,
+              "column": 3
+            }
+          },
+          "range": [
+            77,
+            527
+          ]
+        },
+        {
+          "type": "CommentLine",
+          "value": "export const createActionDispatcher = context => handler => store => handler(dispatcher(dispatch, getState), context)",
+          "start": 529,
+          "end": 648,
+          "loc": {
+            "start": {
+              "line": 9,
+              "column": 0
+            },
+            "end": {
+              "line": 9,
+              "column": 119
+            }
+          },
+          "range": [
+            529,
+            648
+          ]
+        },
+        {
+          "type": "Block",
+          "value": "* Allows the user of lib to define custom redux actions that an action creator retrieved from at a later time via a type map. ",
+          "start": 654,
+          "end": 784,
+          "loc": {
+            "start": {
+              "line": 12,
+              "column": 0
+            },
+            "end": {
+              "line": 12,
+              "column": 130
+            }
+          },
+          "range": [
+            654,
+            784
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "start": 786,
+      "end": 1122,
+      "loc": {
+        "start": {
+          "line": 13,
+          "column": 0
+        },
+        "end": {
+          "line": 17,
+          "column": 1
+        }
+      },
+      "declaration": {
+        "type": "VariableDeclaration",
+        "start": 793,
+        "end": 1122,
+        "loc": {
+          "start": {
+            "line": 13,
+            "column": 7
+          },
+          "end": {
+            "line": 17,
+            "column": 1
+          }
+        },
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "start": 799,
+            "end": 1122,
+            "loc": {
+              "start": {
+                "line": 13,
+                "column": 13
+              },
+              "end": {
+                "line": 17,
+                "column": 1
+              }
+            },
+            "id": {
+              "type": "Identifier",
+              "start": 799,
+              "end": 820,
+              "loc": {
+                "start": {
+                  "line": 13,
+                  "column": 13
+                },
+                "end": {
+                  "line": 13,
+                  "column": 34
+                }
+              },
+              "name": "createActionBlueprint",
+              "leadingComments": null
+            },
+            "init": {
+              "type": "ArrowFunctionExpression",
+              "start": 823,
+              "end": 1122,
+              "loc": {
+                "start": {
+                  "line": 13,
+                  "column": 37
+                },
+                "end": {
+                  "line": 17,
+                  "column": 1
+                }
+              },
+              "id": null,
+              "generator": false,
+              "expression": true,
+              "async": false,
+              "params": [
+                {
+                  "type": "Identifier",
+                  "start": 824,
+                  "end": 834,
+                  "loc": {
+                    "start": {
+                      "line": 13,
+                      "column": 38
+                    },
+                    "end": {
+                      "line": 13,
+                      "column": 48
+                    }
+                  },
+                  "name": "actionName"
+                },
+                {
+                  "type": "AssignmentPattern",
+                  "start": 836,
+                  "end": 865,
+                  "loc": {
+                    "start": {
+                      "line": 13,
+                      "column": 50
+                    },
+                    "end": {
+                      "line": 13,
+                      "column": 79
+                    }
+                  },
+                  "left": {
+                    "type": "Identifier",
+                    "start": 836,
+                    "end": 850,
+                    "loc": {
+                      "start": {
+                        "line": 13,
+                        "column": 50
+                      },
+                      "end": {
+                        "line": 13,
+                        "column": 64
+                      }
+                    },
+                    "name": "payloadCreator"
+                  },
+                  "right": {
+                    "type": "ArrowFunctionExpression",
+                    "start": 853,
+                    "end": 865,
+                    "loc": {
+                      "start": {
+                        "line": 13,
+                        "column": 67
+                      },
+                      "end": {
+                        "line": 13,
+                        "column": 79
+                      }
+                    },
+                    "id": null,
+                    "generator": false,
+                    "expression": true,
+                    "async": false,
+                    "params": [
+                      {
+                        "type": "Identifier",
+                        "start": 853,
+                        "end": 857,
+                        "loc": {
+                          "start": {
+                            "line": 13,
+                            "column": 67
+                          },
+                          "end": {
+                            "line": 13,
+                            "column": 71
+                          }
+                        },
+                        "name": "args"
+                      }
+                    ],
+                    "body": {
+                      "type": "Identifier",
+                      "start": 861,
+                      "end": 865,
+                      "loc": {
+                        "start": {
+                          "line": 13,
+                          "column": 75
+                        },
+                        "end": {
+                          "line": 13,
+                          "column": 79
+                        }
+                      },
+                      "name": "args"
+                    }
+                  }
+                },
+                {
+                  "type": "AssignmentPattern",
+                  "start": 867,
+                  "end": 893,
+                  "loc": {
+                    "start": {
+                      "line": 13,
+                      "column": 81
+                    },
+                    "end": {
+                      "line": 13,
+                      "column": 107
+                    }
+                  },
+                  "left": {
+                    "type": "Identifier",
+                    "start": 867,
+                    "end": 878,
+                    "loc": {
+                      "start": {
+                        "line": 13,
+                        "column": 81
+                      },
+                      "end": {
+                        "line": 13,
+                        "column": 92
+                      }
+                    },
+                    "name": "metaCreator"
+                  },
+                  "right": {
+                    "type": "ArrowFunctionExpression",
+                    "start": 881,
+                    "end": 893,
+                    "loc": {
+                      "start": {
+                        "line": 13,
+                        "column": 95
+                      },
+                      "end": {
+                        "line": 13,
+                        "column": 107
+                      }
+                    },
+                    "id": null,
+                    "generator": false,
+                    "expression": true,
+                    "async": false,
+                    "params": [
+                      {
+                        "type": "Identifier",
+                        "start": 881,
+                        "end": 885,
+                        "loc": {
+                          "start": {
+                            "line": 13,
+                            "column": 95
+                          },
+                          "end": {
+                            "line": 13,
+                            "column": 99
+                          }
+                        },
+                        "name": "args"
+                      }
+                    ],
+                    "body": {
+                      "type": "Identifier",
+                      "start": 889,
+                      "end": 893,
+                      "loc": {
+                        "start": {
+                          "line": 13,
+                          "column": 103
+                        },
+                        "end": {
+                          "line": 13,
+                          "column": 107
+                        }
+                      },
+                      "name": "args"
+                    }
+                  }
+                }
+              ],
+              "body": {
+                "type": "ArrowFunctionExpression",
+                "start": 898,
+                "end": 1122,
+                "loc": {
+                  "start": {
+                    "line": 13,
+                    "column": 112
+                  },
+                  "end": {
+                    "line": 17,
+                    "column": 1
+                  }
+                },
+                "id": null,
+                "generator": false,
+                "expression": false,
+                "async": false,
+                "params": [
+                  {
+                    "type": "Identifier",
+                    "start": 898,
+                    "end": 914,
+                    "loc": {
+                      "start": {
+                        "line": 13,
+                        "column": 112
+                      },
+                      "end": {
+                        "line": 13,
+                        "column": 128
+                      }
+                    },
+                    "name": "createActionType"
+                  }
+                ],
+                "body": {
+                  "type": "BlockStatement",
+                  "start": 918,
+                  "end": 1122,
+                  "loc": {
+                    "start": {
+                      "line": 13,
+                      "column": 132
+                    },
+                    "end": {
+                      "line": 17,
+                      "column": 1
+                    }
+                  },
+                  "body": [
+                    {
+                      "type": "ReturnStatement",
+                      "start": 1011,
+                      "end": 1117,
+                      "loc": {
+                        "start": {
+                          "line": 15,
+                          "column": 2
+                        },
+                        "end": {
+                          "line": 15,
+                          "column": 108
+                        }
+                      },
+                      "argument": {
+                        "type": "CallExpression",
+                        "start": 1018,
+                        "end": 1117,
+                        "loc": {
+                          "start": {
+                            "line": 15,
+                            "column": 9
+                          },
+                          "end": {
+                            "line": 15,
+                            "column": 108
+                          }
+                        },
+                        "callee": {
+                          "type": "Identifier",
+                          "start": 1018,
+                          "end": 1030,
+                          "loc": {
+                            "start": {
+                              "line": 15,
+                              "column": 9
+                            },
+                            "end": {
+                              "line": 15,
+                              "column": 21
+                            }
+                          },
+                          "name": "createAction",
+                          "leadingComments": null
+                        },
+                        "arguments": [
+                          {
+                            "type": "CallExpression",
+                            "start": 1031,
+                            "end": 1059,
+                            "loc": {
+                              "start": {
+                                "line": 15,
+                                "column": 22
+                              },
+                              "end": {
+                                "line": 15,
+                                "column": 50
+                              }
+                            },
+                            "callee": {
+                              "type": "Identifier",
+                              "start": 1031,
+                              "end": 1047,
+                              "loc": {
+                                "start": {
+                                  "line": 15,
+                                  "column": 22
+                                },
+                                "end": {
+                                  "line": 15,
+                                  "column": 38
+                                }
+                              },
+                              "name": "createActionType"
+                            },
+                            "arguments": [
+                              {
+                                "type": "Identifier",
+                                "start": 1048,
+                                "end": 1058,
+                                "loc": {
+                                  "start": {
+                                    "line": 15,
+                                    "column": 39
+                                  },
+                                  "end": {
+                                    "line": 15,
+                                    "column": 49
+                                  }
+                                },
+                                "name": "actionName"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "ArrowFunctionExpression",
+                            "start": 1061,
+                            "end": 1089,
+                            "loc": {
+                              "start": {
+                                "line": 15,
+                                "column": 52
+                              },
+                              "end": {
+                                "line": 15,
+                                "column": 80
+                              }
+                            },
+                            "id": null,
+                            "generator": false,
+                            "expression": true,
+                            "async": false,
+                            "params": [
+                              {
+                                "type": "Identifier",
+                                "start": 1061,
+                                "end": 1065,
+                                "loc": {
+                                  "start": {
+                                    "line": 15,
+                                    "column": 52
+                                  },
+                                  "end": {
+                                    "line": 15,
+                                    "column": 56
+                                  }
+                                },
+                                "name": "args"
+                              }
+                            ],
+                            "body": {
+                              "type": "CallExpression",
+                              "start": 1069,
+                              "end": 1089,
+                              "loc": {
+                                "start": {
+                                  "line": 15,
+                                  "column": 60
+                                },
+                                "end": {
+                                  "line": 15,
+                                  "column": 80
+                                }
+                              },
+                              "callee": {
+                                "type": "Identifier",
+                                "start": 1069,
+                                "end": 1083,
+                                "loc": {
+                                  "start": {
+                                    "line": 15,
+                                    "column": 60
+                                  },
+                                  "end": {
+                                    "line": 15,
+                                    "column": 74
+                                  }
+                                },
+                                "name": "payloadCreator"
+                              },
+                              "arguments": [
+                                {
+                                  "type": "Identifier",
+                                  "start": 1084,
+                                  "end": 1088,
+                                  "loc": {
+                                    "start": {
+                                      "line": 15,
+                                      "column": 75
+                                    },
+                                    "end": {
+                                      "line": 15,
+                                      "column": 79
+                                    }
+                                  },
+                                  "name": "args"
+                                }
+                              ]
+                            }
+                          },
+                          {
+                            "type": "ArrowFunctionExpression",
+                            "start": 1091,
+                            "end": 1116,
+                            "loc": {
+                              "start": {
+                                "line": 15,
+                                "column": 82
+                              },
+                              "end": {
+                                "line": 15,
+                                "column": 107
+                              }
+                            },
+                            "id": null,
+                            "generator": false,
+                            "expression": true,
+                            "async": false,
+                            "params": [
+                              {
+                                "type": "Identifier",
+                                "start": 1091,
+                                "end": 1095,
+                                "loc": {
+                                  "start": {
+                                    "line": 15,
+                                    "column": 82
+                                  },
+                                  "end": {
+                                    "line": 15,
+                                    "column": 86
+                                  }
+                                },
+                                "name": "args"
+                              }
+                            ],
+                            "body": {
+                              "type": "CallExpression",
+                              "start": 1099,
+                              "end": 1116,
+                              "loc": {
+                                "start": {
+                                  "line": 15,
+                                  "column": 90
+                                },
+                                "end": {
+                                  "line": 15,
+                                  "column": 107
+                                }
+                              },
+                              "callee": {
+                                "type": "Identifier",
+                                "start": 1099,
+                                "end": 1110,
+                                "loc": {
+                                  "start": {
+                                    "line": 15,
+                                    "column": 90
+                                  },
+                                  "end": {
+                                    "line": 15,
+                                    "column": 101
+                                  }
+                                },
+                                "name": "metaCreator"
+                              },
+                              "arguments": [
+                                {
+                                  "type": "Identifier",
+                                  "start": 1111,
+                                  "end": 1115,
+                                  "loc": {
+                                    "start": {
+                                      "line": 15,
+                                      "column": 102
+                                    },
+                                    "end": {
+                                      "line": 15,
+                                      "column": 106
+                                    }
+                                  },
+                                  "name": "args"
+                                }
+                              ]
+                            }
+                          }
+                        ],
+                        "leadingComments": null
+                      },
+                      "leadingComments": [
+                        {
+                          "type": "CommentLine",
+                          "value": "console.warn('CREATING ACTION BLUEPRINT', actionName, payloadCreator, metaCreator)",
+                          "start": 923,
+                          "end": 1007,
+                          "loc": {
+                            "start": {
+                              "line": 14,
+                              "column": 2
+                            },
+                            "end": {
+                              "line": 14,
+                              "column": 86
+                            }
+                          },
+                          "range": [
+                            923,
+                            1007
+                          ]
+                        }
+                      ]
+                    }
+                  ],
+                  "trailingComments": null
+                },
+                "trailingComments": null
+              },
+              "trailingComments": null
+            },
+            "leadingComments": null,
+            "trailingComments": null
+          }
+        ],
+        "kind": "const",
+        "leadingComments": [
+          {
+            "type": "Block",
+            "value": "*\r\n * Configures a Flux Standard Action creator injected with the libraries dispatcher and context.\r\n * @example <caption>Exports a Flux Standard Action creator that takes a handler injected with the libraries dispatcher and context.\r\n * export const createSomeUserAction = configureDispatcherAction((dispatcher, context) => dispatcher.action.execute('create-some-user-action'))\r\n * @param  {function} handler: (context, dispatcher) => { ... }\r\n ",
+            "start": 77,
+            "end": 527,
+            "loc": {
+              "start": {
+                "line": 3,
+                "column": 0
+              },
+              "end": {
+                "line": 8,
+                "column": 3
+              }
+            },
+            "range": [
+              77,
+              527
+            ]
+          },
+          {
+            "type": "CommentLine",
+            "value": "export const createActionDispatcher = context => handler => store => handler(dispatcher(dispatch, getState), context)",
+            "start": 529,
+            "end": 648,
+            "loc": {
+              "start": {
+                "line": 9,
+                "column": 0
+              },
+              "end": {
+                "line": 9,
+                "column": 119
+              }
+            },
+            "range": [
+              529,
+              648
+            ]
+          },
+          {
+            "type": "Block",
+            "value": "* Allows the user of lib to define custom redux actions that an action creator retrieved from at a later time via a type map. ",
+            "start": 654,
+            "end": 784,
+            "loc": {
+              "start": {
+                "line": 12,
+                "column": 0
+              },
+              "end": {
+                "line": 12,
+                "column": 130
+              }
+            },
+            "range": [
+              654,
+              784
+            ]
+          }
+        ],
+        "trailingComments": [
+          {
+            "type": "Block",
+            "value": "* Creates a translator that turns actionBlueprints into actionCreators ",
+            "start": 1126,
+            "end": 1201,
+            "loc": {
+              "start": {
+                "line": 19,
+                "column": 0
+              },
+              "end": {
+                "line": 19,
+                "column": 75
+              }
+            },
+            "range": [
+              1126,
+              1201
+            ]
+          }
+        ]
+      },
+      "specifiers": [],
+      "source": null,
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\r\n * Configures a Flux Standard Action creator injected with the libraries dispatcher and context.\r\n * @example <caption>Exports a Flux Standard Action creator that takes a handler injected with the libraries dispatcher and context.\r\n * export const createSomeUserAction = configureDispatcherAction((dispatcher, context) => dispatcher.action.execute('create-some-user-action'))\r\n * @param  {function} handler: (context, dispatcher) => { ... }\r\n ",
+          "start": 77,
+          "end": 527,
+          "loc": {
+            "start": {
+              "line": 3,
+              "column": 0
+            },
+            "end": {
+              "line": 8,
+              "column": 3
+            }
+          },
+          "range": [
+            77,
+            527
+          ]
+        },
+        {
+          "type": "CommentLine",
+          "value": "export const createActionDispatcher = context => handler => store => handler(dispatcher(dispatch, getState), context)",
+          "start": 529,
+          "end": 648,
+          "loc": {
+            "start": {
+              "line": 9,
+              "column": 0
+            },
+            "end": {
+              "line": 9,
+              "column": 119
+            }
+          },
+          "range": [
+            529,
+            648
+          ]
+        },
+        {
+          "type": "Block",
+          "value": "* Allows the user of lib to define custom redux actions that an action creator retrieved from at a later time via a type map. ",
+          "start": 654,
+          "end": 784,
+          "loc": {
+            "start": {
+              "line": 12,
+              "column": 0
+            },
+            "end": {
+              "line": 12,
+              "column": 130
+            }
+          },
+          "range": [
+            654,
+            784
+          ]
+        }
+      ],
+      "trailingComments": [
+        {
+          "type": "Block",
+          "value": "* Creates a translator that turns actionBlueprints into actionCreators ",
+          "start": 1126,
+          "end": 1201,
+          "loc": {
+            "start": {
+              "line": 19,
+              "column": 0
+            },
+            "end": {
+              "line": 19,
+              "column": 75
+            }
+          },
+          "range": [
+            1126,
+            1201
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "start": 1203,
+      "end": 1730,
+      "loc": {
+        "start": {
+          "line": 20,
+          "column": 0
+        },
+        "end": {
+          "line": 29,
+          "column": 1
+        }
+      },
+      "declaration": {
+        "type": "VariableDeclaration",
+        "start": 1210,
+        "end": 1730,
+        "loc": {
+          "start": {
+            "line": 20,
+            "column": 7
+          },
+          "end": {
+            "line": 29,
+            "column": 1
+          }
+        },
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "start": 1216,
+            "end": 1730,
+            "loc": {
+              "start": {
+                "line": 20,
+                "column": 13
+              },
+              "end": {
+                "line": 29,
+                "column": 1
+              }
+            },
+            "id": {
+              "type": "Identifier",
+              "start": 1216,
+              "end": 1242,
+              "loc": {
+                "start": {
+                  "line": 20,
+                  "column": 13
+                },
+                "end": {
+                  "line": 20,
+                  "column": 39
+                }
+              },
+              "name": "createBlueprintsTranslator",
+              "leadingComments": null
+            },
+            "init": {
+              "type": "ArrowFunctionExpression",
+              "start": 1245,
+              "end": 1730,
+              "loc": {
+                "start": {
+                  "line": 20,
+                  "column": 42
+                },
+                "end": {
+                  "line": 29,
+                  "column": 1
+                }
+              },
+              "id": null,
+              "generator": false,
+              "expression": true,
+              "async": false,
+              "params": [
+                {
+                  "type": "Identifier",
+                  "start": 1245,
+                  "end": 1261,
+                  "loc": {
+                    "start": {
+                      "line": 20,
+                      "column": 42
+                    },
+                    "end": {
+                      "line": 20,
+                      "column": 58
+                    }
+                  },
+                  "name": "createActionType"
+                }
+              ],
+              "body": {
+                "type": "ArrowFunctionExpression",
+                "start": 1265,
+                "end": 1730,
+                "loc": {
+                  "start": {
+                    "line": 20,
+                    "column": 62
+                  },
+                  "end": {
+                    "line": 29,
+                    "column": 1
+                  }
+                },
+                "id": null,
+                "generator": false,
+                "expression": false,
+                "async": false,
+                "params": [
+                  {
+                    "type": "Identifier",
+                    "start": 1265,
+                    "end": 1281,
+                    "loc": {
+                      "start": {
+                        "line": 20,
+                        "column": 62
+                      },
+                      "end": {
+                        "line": 20,
+                        "column": 78
+                      }
+                    },
+                    "name": "actionBlueprints"
+                  }
+                ],
+                "body": {
+                  "type": "BlockStatement",
+                  "start": 1285,
+                  "end": 1730,
+                  "loc": {
+                    "start": {
+                      "line": 20,
+                      "column": 82
+                    },
+                    "end": {
+                      "line": 29,
+                      "column": 1
+                    }
+                  },
+                  "body": [
+                    {
+                      "type": "ExpressionStatement",
+                      "start": 1290,
+                      "end": 1350,
+                      "loc": {
+                        "start": {
+                          "line": 21,
+                          "column": 2
+                        },
+                        "end": {
+                          "line": 21,
+                          "column": 62
+                        }
+                      },
+                      "expression": {
+                        "type": "CallExpression",
+                        "start": 1290,
+                        "end": 1350,
+                        "loc": {
+                          "start": {
+                            "line": 21,
+                            "column": 2
+                          },
+                          "end": {
+                            "line": 21,
+                            "column": 62
+                          }
+                        },
+                        "callee": {
+                          "type": "MemberExpression",
+                          "start": 1290,
+                          "end": 1299,
+                          "loc": {
+                            "start": {
+                              "line": 21,
+                              "column": 2
+                            },
+                            "end": {
+                              "line": 21,
+                              "column": 11
+                            }
+                          },
+                          "object": {
+                            "type": "Identifier",
+                            "start": 1290,
+                            "end": 1296,
+                            "loc": {
+                              "start": {
+                                "line": 21,
+                                "column": 2
+                              },
+                              "end": {
+                                "line": 21,
+                                "column": 8
+                              }
+                            },
+                            "name": "assert"
+                          },
+                          "property": {
+                            "type": "Identifier",
+                            "start": 1297,
+                            "end": 1299,
+                            "loc": {
+                              "start": {
+                                "line": 21,
+                                "column": 9
+                              },
+                              "end": {
+                                "line": 21,
+                                "column": 11
+                              }
+                            },
+                            "name": "ok"
+                          },
+                          "computed": false
+                        },
+                        "arguments": [
+                          {
+                            "type": "Identifier",
+                            "start": 1300,
+                            "end": 1316,
+                            "loc": {
+                              "start": {
+                                "line": 21,
+                                "column": 12
+                              },
+                              "end": {
+                                "line": 21,
+                                "column": 28
+                              }
+                            },
+                            "name": "actionBlueprints"
+                          },
+                          {
+                            "type": "Literal",
+                            "start": 1318,
+                            "end": 1349,
+                            "loc": {
+                              "start": {
+                                "line": 21,
+                                "column": 30
+                              },
+                              "end": {
+                                "line": 21,
+                                "column": 61
+                              }
+                            },
+                            "value": "actionBlueprints are required",
+                            "rawValue": "actionBlueprints are required",
+                            "raw": "'actionBlueprints are required'"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "type": "IfStatement",
+                      "start": 1354,
+                      "end": 1463,
+                      "loc": {
+                        "start": {
+                          "line": 22,
+                          "column": 2
+                        },
+                        "end": {
+                          "line": 23,
+                          "column": 72
+                        }
+                      },
+                      "test": {
+                        "type": "CallExpression",
+                        "start": 1357,
+                        "end": 1388,
+                        "loc": {
+                          "start": {
+                            "line": 22,
+                            "column": 5
+                          },
+                          "end": {
+                            "line": 22,
+                            "column": 36
+                          }
+                        },
+                        "callee": {
+                          "type": "MemberExpression",
+                          "start": 1357,
+                          "end": 1370,
+                          "loc": {
+                            "start": {
+                              "line": 22,
+                              "column": 5
+                            },
+                            "end": {
+                              "line": 22,
+                              "column": 18
+                            }
+                          },
+                          "object": {
+                            "type": "Identifier",
+                            "start": 1357,
+                            "end": 1362,
+                            "loc": {
+                              "start": {
+                                "line": 22,
+                                "column": 5
+                              },
+                              "end": {
+                                "line": 22,
+                                "column": 10
+                              }
+                            },
+                            "name": "Array"
+                          },
+                          "property": {
+                            "type": "Identifier",
+                            "start": 1363,
+                            "end": 1370,
+                            "loc": {
+                              "start": {
+                                "line": 22,
+                                "column": 11
+                              },
+                              "end": {
+                                "line": 22,
+                                "column": 18
+                              }
+                            },
+                            "name": "isArray"
+                          },
+                          "computed": false
+                        },
+                        "arguments": [
+                          {
+                            "type": "Identifier",
+                            "start": 1371,
+                            "end": 1387,
+                            "loc": {
+                              "start": {
+                                "line": 22,
+                                "column": 19
+                              },
+                              "end": {
+                                "line": 22,
+                                "column": 35
+                              }
+                            },
+                            "name": "actionBlueprints"
+                          }
+                        ]
+                      },
+                      "consequent": {
+                        "type": "ReturnStatement",
+                        "start": 1395,
+                        "end": 1463,
+                        "loc": {
+                          "start": {
+                            "line": 23,
+                            "column": 4
+                          },
+                          "end": {
+                            "line": 23,
+                            "column": 72
+                          }
+                        },
+                        "argument": {
+                          "type": "CallExpression",
+                          "start": 1402,
+                          "end": 1463,
+                          "loc": {
+                            "start": {
+                              "line": 23,
+                              "column": 11
+                            },
+                            "end": {
+                              "line": 23,
+                              "column": 72
+                            }
+                          },
+                          "callee": {
+                            "type": "MemberExpression",
+                            "start": 1402,
+                            "end": 1422,
+                            "loc": {
+                              "start": {
+                                "line": 23,
+                                "column": 11
+                              },
+                              "end": {
+                                "line": 23,
+                                "column": 31
+                              }
+                            },
+                            "object": {
+                              "type": "Identifier",
+                              "start": 1402,
+                              "end": 1418,
+                              "loc": {
+                                "start": {
+                                  "line": 23,
+                                  "column": 11
+                                },
+                                "end": {
+                                  "line": 23,
+                                  "column": 27
+                                }
+                              },
+                              "name": "actionBlueprints"
+                            },
+                            "property": {
+                              "type": "Identifier",
+                              "start": 1419,
+                              "end": 1422,
+                              "loc": {
+                                "start": {
+                                  "line": 23,
+                                  "column": 28
+                                },
+                                "end": {
+                                  "line": 23,
+                                  "column": 31
+                                }
+                              },
+                              "name": "map"
+                            },
+                            "computed": false
+                          },
+                          "arguments": [
+                            {
+                              "type": "ArrowFunctionExpression",
+                              "start": 1423,
+                              "end": 1462,
+                              "loc": {
+                                "start": {
+                                  "line": 23,
+                                  "column": 32
+                                },
+                                "end": {
+                                  "line": 23,
+                                  "column": 71
+                                }
+                              },
+                              "id": null,
+                              "generator": false,
+                              "expression": true,
+                              "async": false,
+                              "params": [
+                                {
+                                  "type": "Identifier",
+                                  "start": 1423,
+                                  "end": 1424,
+                                  "loc": {
+                                    "start": {
+                                      "line": 23,
+                                      "column": 32
+                                    },
+                                    "end": {
+                                      "line": 23,
+                                      "column": 33
+                                    }
+                                  },
+                                  "name": "x"
+                                }
+                              ],
+                              "body": {
+                                "type": "CallExpression",
+                                "start": 1428,
+                                "end": 1462,
+                                "loc": {
+                                  "start": {
+                                    "line": 23,
+                                    "column": 37
+                                  },
+                                  "end": {
+                                    "line": 23,
+                                    "column": 71
+                                  }
+                                },
+                                "callee": {
+                                  "type": "Identifier",
+                                  "start": 1428,
+                                  "end": 1444,
+                                  "loc": {
+                                    "start": {
+                                      "line": 23,
+                                      "column": 37
+                                    },
+                                    "end": {
+                                      "line": 23,
+                                      "column": 53
+                                    }
+                                  },
+                                  "name": "actionBlueprints"
+                                },
+                                "arguments": [
+                                  {
+                                    "type": "Identifier",
+                                    "start": 1445,
+                                    "end": 1461,
+                                    "loc": {
+                                      "start": {
+                                        "line": 23,
+                                        "column": 54
+                                      },
+                                      "end": {
+                                        "line": 23,
+                                        "column": 70
+                                      }
+                                    },
+                                    "name": "createActionType"
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      "alternate": null
+                    },
+                    {
+                      "type": "ExpressionStatement",
+                      "start": 1467,
+                      "end": 1555,
+                      "loc": {
+                        "start": {
+                          "line": 24,
+                          "column": 2
+                        },
+                        "end": {
+                          "line": 24,
+                          "column": 90
+                        }
+                      },
+                      "expression": {
+                        "type": "CallExpression",
+                        "start": 1467,
+                        "end": 1555,
+                        "loc": {
+                          "start": {
+                            "line": 24,
+                            "column": 2
+                          },
+                          "end": {
+                            "line": 24,
+                            "column": 90
+                          }
+                        },
+                        "callee": {
+                          "type": "Identifier",
+                          "start": 1467,
+                          "end": 1473,
+                          "loc": {
+                            "start": {
+                              "line": 24,
+                              "column": 2
+                            },
+                            "end": {
+                              "line": 24,
+                              "column": 8
+                            }
+                          },
+                          "name": "assert"
+                        },
+                        "arguments": [
+                          {
+                            "type": "BinaryExpression",
+                            "start": 1474,
+                            "end": 1510,
+                            "loc": {
+                              "start": {
+                                "line": 24,
+                                "column": 9
+                              },
+                              "end": {
+                                "line": 24,
+                                "column": 45
+                              }
+                            },
+                            "left": {
+                              "type": "UnaryExpression",
+                              "start": 1474,
+                              "end": 1497,
+                              "loc": {
+                                "start": {
+                                  "line": 24,
+                                  "column": 9
+                                },
+                                "end": {
+                                  "line": 24,
+                                  "column": 32
+                                }
+                              },
+                              "operator": "typeof",
+                              "prefix": true,
+                              "argument": {
+                                "type": "Identifier",
+                                "start": 1481,
+                                "end": 1497,
+                                "loc": {
+                                  "start": {
+                                    "line": 24,
+                                    "column": 16
+                                  },
+                                  "end": {
+                                    "line": 24,
+                                    "column": 32
+                                  }
+                                },
+                                "name": "actionBlueprints"
+                              }
+                            },
+                            "operator": "===",
+                            "right": {
+                              "type": "Literal",
+                              "start": 1502,
+                              "end": 1510,
+                              "loc": {
+                                "start": {
+                                  "line": 24,
+                                  "column": 37
+                                },
+                                "end": {
+                                  "line": 24,
+                                  "column": 45
+                                }
+                              },
+                              "value": "object",
+                              "rawValue": "object",
+                              "raw": "'object'"
+                            }
+                          },
+                          {
+                            "type": "Literal",
+                            "start": 1512,
+                            "end": 1554,
+                            "loc": {
+                              "start": {
+                                "line": 24,
+                                "column": 47
+                              },
+                              "end": {
+                                "line": 24,
+                                "column": 89
+                              }
+                            },
+                            "value": "actionBlueprints must be array or object",
+                            "rawValue": "actionBlueprints must be array or object",
+                            "raw": "'actionBlueprints must be array or object'"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "type": "ReturnStatement",
+                      "start": 1559,
+                      "end": 1727,
+                      "loc": {
+                        "start": {
+                          "line": 25,
+                          "column": 2
+                        },
+                        "end": {
+                          "line": 28,
+                          "column": 8
+                        }
+                      },
+                      "argument": {
+                        "type": "CallExpression",
+                        "start": 1566,
+                        "end": 1727,
+                        "loc": {
+                          "start": {
+                            "line": 25,
+                            "column": 9
+                          },
+                          "end": {
+                            "line": 28,
+                            "column": 8
+                          }
+                        },
+                        "callee": {
+                          "type": "MemberExpression",
+                          "start": 1566,
+                          "end": 1602,
+                          "loc": {
+                            "start": {
+                              "line": 25,
+                              "column": 9
+                            },
+                            "end": {
+                              "line": 25,
+                              "column": 45
+                            }
+                          },
+                          "object": {
+                            "type": "CallExpression",
+                            "start": 1566,
+                            "end": 1595,
+                            "loc": {
+                              "start": {
+                                "line": 25,
+                                "column": 9
+                              },
+                              "end": {
+                                "line": 25,
+                                "column": 38
+                              }
+                            },
+                            "callee": {
+                              "type": "MemberExpression",
+                              "start": 1566,
+                              "end": 1577,
+                              "loc": {
+                                "start": {
+                                  "line": 25,
+                                  "column": 9
+                                },
+                                "end": {
+                                  "line": 25,
+                                  "column": 20
+                                }
+                              },
+                              "object": {
+                                "type": "Identifier",
+                                "start": 1566,
+                                "end": 1572,
+                                "loc": {
+                                  "start": {
+                                    "line": 25,
+                                    "column": 9
+                                  },
+                                  "end": {
+                                    "line": 25,
+                                    "column": 15
+                                  }
+                                },
+                                "name": "Object"
+                              },
+                              "property": {
+                                "type": "Identifier",
+                                "start": 1573,
+                                "end": 1577,
+                                "loc": {
+                                  "start": {
+                                    "line": 25,
+                                    "column": 16
+                                  },
+                                  "end": {
+                                    "line": 25,
+                                    "column": 20
+                                  }
+                                },
+                                "name": "keys"
+                              },
+                              "computed": false
+                            },
+                            "arguments": [
+                              {
+                                "type": "Identifier",
+                                "start": 1578,
+                                "end": 1594,
+                                "loc": {
+                                  "start": {
+                                    "line": 25,
+                                    "column": 21
+                                  },
+                                  "end": {
+                                    "line": 25,
+                                    "column": 37
+                                  }
+                                },
+                                "name": "actionBlueprints"
+                              }
+                            ]
+                          },
+                          "property": {
+                            "type": "Identifier",
+                            "start": 1596,
+                            "end": 1602,
+                            "loc": {
+                              "start": {
+                                "line": 25,
+                                "column": 39
+                              },
+                              "end": {
+                                "line": 25,
+                                "column": 45
+                              }
+                            },
+                            "name": "reduce"
+                          },
+                          "computed": false
+                        },
+                        "arguments": [
+                          {
+                            "type": "ArrowFunctionExpression",
+                            "start": 1603,
+                            "end": 1722,
+                            "loc": {
+                              "start": {
+                                "line": 25,
+                                "column": 46
+                              },
+                              "end": {
+                                "line": 28,
+                                "column": 3
+                              }
+                            },
+                            "id": null,
+                            "generator": false,
+                            "expression": false,
+                            "async": false,
+                            "params": [
+                              {
+                                "type": "Identifier",
+                                "start": 1604,
+                                "end": 1618,
+                                "loc": {
+                                  "start": {
+                                    "line": 25,
+                                    "column": 47
+                                  },
+                                  "end": {
+                                    "line": 25,
+                                    "column": 61
+                                  }
+                                },
+                                "name": "actionCreators"
+                              },
+                              {
+                                "type": "Identifier",
+                                "start": 1620,
+                                "end": 1621,
+                                "loc": {
+                                  "start": {
+                                    "line": 25,
+                                    "column": 63
+                                  },
+                                  "end": {
+                                    "line": 25,
+                                    "column": 64
+                                  }
+                                },
+                                "name": "x"
+                              }
+                            ],
+                            "body": {
+                              "type": "BlockStatement",
+                              "start": 1626,
+                              "end": 1722,
+                              "loc": {
+                                "start": {
+                                  "line": 25,
+                                  "column": 69
+                                },
+                                "end": {
+                                  "line": 28,
+                                  "column": 3
+                                }
+                              },
+                              "body": [
+                                {
+                                  "type": "ExpressionStatement",
+                                  "start": 1633,
+                                  "end": 1690,
+                                  "loc": {
+                                    "start": {
+                                      "line": 26,
+                                      "column": 4
+                                    },
+                                    "end": {
+                                      "line": 26,
+                                      "column": 61
+                                    }
+                                  },
+                                  "expression": {
+                                    "type": "AssignmentExpression",
+                                    "start": 1633,
+                                    "end": 1690,
+                                    "loc": {
+                                      "start": {
+                                        "line": 26,
+                                        "column": 4
+                                      },
+                                      "end": {
+                                        "line": 26,
+                                        "column": 61
+                                      }
+                                    },
+                                    "operator": "=",
+                                    "left": {
+                                      "type": "MemberExpression",
+                                      "start": 1633,
+                                      "end": 1650,
+                                      "loc": {
+                                        "start": {
+                                          "line": 26,
+                                          "column": 4
+                                        },
+                                        "end": {
+                                          "line": 26,
+                                          "column": 21
+                                        }
+                                      },
+                                      "object": {
+                                        "type": "Identifier",
+                                        "start": 1633,
+                                        "end": 1647,
+                                        "loc": {
+                                          "start": {
+                                            "line": 26,
+                                            "column": 4
+                                          },
+                                          "end": {
+                                            "line": 26,
+                                            "column": 18
+                                          }
+                                        },
+                                        "name": "actionCreators"
+                                      },
+                                      "property": {
+                                        "type": "Identifier",
+                                        "start": 1648,
+                                        "end": 1649,
+                                        "loc": {
+                                          "start": {
+                                            "line": 26,
+                                            "column": 19
+                                          },
+                                          "end": {
+                                            "line": 26,
+                                            "column": 20
+                                          }
+                                        },
+                                        "name": "x"
+                                      },
+                                      "computed": true
+                                    },
+                                    "right": {
+                                      "type": "CallExpression",
+                                      "start": 1653,
+                                      "end": 1690,
+                                      "loc": {
+                                        "start": {
+                                          "line": 26,
+                                          "column": 24
+                                        },
+                                        "end": {
+                                          "line": 26,
+                                          "column": 61
+                                        }
+                                      },
+                                      "callee": {
+                                        "type": "MemberExpression",
+                                        "start": 1653,
+                                        "end": 1672,
+                                        "loc": {
+                                          "start": {
+                                            "line": 26,
+                                            "column": 24
+                                          },
+                                          "end": {
+                                            "line": 26,
+                                            "column": 43
+                                          }
+                                        },
+                                        "object": {
+                                          "type": "Identifier",
+                                          "start": 1653,
+                                          "end": 1669,
+                                          "loc": {
+                                            "start": {
+                                              "line": 26,
+                                              "column": 24
+                                            },
+                                            "end": {
+                                              "line": 26,
+                                              "column": 40
+                                            }
+                                          },
+                                          "name": "actionBlueprints"
+                                        },
+                                        "property": {
+                                          "type": "Identifier",
+                                          "start": 1670,
+                                          "end": 1671,
+                                          "loc": {
+                                            "start": {
+                                              "line": 26,
+                                              "column": 41
+                                            },
+                                            "end": {
+                                              "line": 26,
+                                              "column": 42
+                                            }
+                                          },
+                                          "name": "x"
+                                        },
+                                        "computed": true
+                                      },
+                                      "arguments": [
+                                        {
+                                          "type": "Identifier",
+                                          "start": 1673,
+                                          "end": 1689,
+                                          "loc": {
+                                            "start": {
+                                              "line": 26,
+                                              "column": 44
+                                            },
+                                            "end": {
+                                              "line": 26,
+                                              "column": 60
+                                            }
+                                          },
+                                          "name": "createActionType"
+                                        }
+                                      ]
+                                    }
+                                  }
+                                },
+                                {
+                                  "type": "ReturnStatement",
+                                  "start": 1696,
+                                  "end": 1717,
+                                  "loc": {
+                                    "start": {
+                                      "line": 27,
+                                      "column": 4
+                                    },
+                                    "end": {
+                                      "line": 27,
+                                      "column": 25
+                                    }
+                                  },
+                                  "argument": {
+                                    "type": "Identifier",
+                                    "start": 1703,
+                                    "end": 1717,
+                                    "loc": {
+                                      "start": {
+                                        "line": 27,
+                                        "column": 11
+                                      },
+                                      "end": {
+                                        "line": 27,
+                                        "column": 25
+                                      }
+                                    },
+                                    "name": "actionCreators"
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          {
+                            "type": "ObjectExpression",
+                            "start": 1724,
+                            "end": 1726,
+                            "loc": {
+                              "start": {
+                                "line": 28,
+                                "column": 5
+                              },
+                              "end": {
+                                "line": 28,
+                                "column": 7
+                              }
+                            },
+                            "properties": []
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "trailingComments": null
+                },
+                "trailingComments": null
+              },
+              "trailingComments": null
+            },
+            "leadingComments": null,
+            "trailingComments": null
+          }
+        ],
+        "kind": "const",
+        "leadingComments": [
+          {
+            "type": "Block",
+            "value": "* Creates a translator that turns actionBlueprints into actionCreators ",
+            "start": 1126,
+            "end": 1201,
+            "loc": {
+              "start": {
+                "line": 19,
+                "column": 0
+              },
+              "end": {
+                "line": 19,
+                "column": 75
+              }
+            },
+            "range": [
+              1126,
+              1201
+            ]
+          }
+        ],
+        "trailingComments": [
+          {
+            "type": "CommentLine",
+            "value": "export const createDelayableActionBlueprint = (actionName, payloadCreator, metaCreator) => delay => createActionBlueprint(actionName, payloadCreator, meta => Object.assign(metaCreator(meta), { delay }))",
+            "start": 1734,
+            "end": 1938,
+            "loc": {
+              "start": {
+                "line": 31,
+                "column": 0
+              },
+              "end": {
+                "line": 31,
+                "column": 204
+              }
+            },
+            "range": [
+              1734,
+              1938
+            ]
+          },
+          {
+            "type": "CommentLine",
+            "value": " metaCreator(meta) === Object.assign(meta, { delay })",
+            "start": 1942,
+            "end": 1997,
+            "loc": {
+              "start": {
+                "line": 33,
+                "column": 0
+              },
+              "end": {
+                "line": 33,
+                "column": 55
+              }
+            },
+            "range": [
+              1942,
+              1997
+            ]
+          },
+          {
+            "type": "CommentLine",
+            "value": " delayableActionBlueprint(delay) === actionBlueprint",
+            "start": 1999,
+            "end": 2053,
+            "loc": {
+              "start": {
+                "line": 34,
+                "column": 0
+              },
+              "end": {
+                "line": 34,
+                "column": 54
+              }
+            },
+            "range": [
+              1999,
+              2053
+            ]
+          },
+          {
+            "type": "CommentLine",
+            "value": " actionBlueprint(createActionType) === actionCreator",
+            "start": 2057,
+            "end": 2111,
+            "loc": {
+              "start": {
+                "line": 36,
+                "column": 0
+              },
+              "end": {
+                "line": 36,
+                "column": 54
+              }
+            },
+            "range": [
+              2057,
+              2111
+            ]
+          },
+          {
+            "type": "CommentLine",
+            "value": " actionDefinition === { type, payloadCreactor, ?metaCreator }",
+            "start": 2115,
+            "end": 2178,
+            "loc": {
+              "start": {
+                "line": 38,
+                "column": 0
+              },
+              "end": {
+                "line": 38,
+                "column": 63
+              }
+            },
+            "range": [
+              2115,
+              2178
+            ]
+          }
+        ]
+      },
+      "specifiers": [],
+      "source": null,
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "* Creates a translator that turns actionBlueprints into actionCreators ",
+          "start": 1126,
+          "end": 1201,
+          "loc": {
+            "start": {
+              "line": 19,
+              "column": 0
+            },
+            "end": {
+              "line": 19,
+              "column": 75
+            }
+          },
+          "range": [
+            1126,
+            1201
+          ]
+        }
+      ],
+      "trailingComments": [
+        {
+          "type": "CommentLine",
+          "value": "export const createDelayableActionBlueprint = (actionName, payloadCreator, metaCreator) => delay => createActionBlueprint(actionName, payloadCreator, meta => Object.assign(metaCreator(meta), { delay }))",
+          "start": 1734,
+          "end": 1938,
+          "loc": {
+            "start": {
+              "line": 31,
+              "column": 0
+            },
+            "end": {
+              "line": 31,
+              "column": 204
+            }
+          },
+          "range": [
+            1734,
+            1938
+          ]
+        },
+        {
+          "type": "CommentLine",
+          "value": " metaCreator(meta) === Object.assign(meta, { delay })",
+          "start": 1942,
+          "end": 1997,
+          "loc": {
+            "start": {
+              "line": 33,
+              "column": 0
+            },
+            "end": {
+              "line": 33,
+              "column": 55
+            }
+          },
+          "range": [
+            1942,
+            1997
+          ]
+        },
+        {
+          "type": "CommentLine",
+          "value": " delayableActionBlueprint(delay) === actionBlueprint",
+          "start": 1999,
+          "end": 2053,
+          "loc": {
+            "start": {
+              "line": 34,
+              "column": 0
+            },
+            "end": {
+              "line": 34,
+              "column": 54
+            }
+          },
+          "range": [
+            1999,
+            2053
+          ]
+        },
+        {
+          "type": "CommentLine",
+          "value": " actionBlueprint(createActionType) === actionCreator",
+          "start": 2057,
+          "end": 2111,
+          "loc": {
+            "start": {
+              "line": 36,
+              "column": 0
+            },
+            "end": {
+              "line": 36,
+              "column": 54
+            }
+          },
+          "range": [
+            2057,
+            2111
+          ]
+        },
+        {
+          "type": "CommentLine",
+          "value": " actionDefinition === { type, payloadCreactor, ?metaCreator }",
+          "start": 2115,
+          "end": 2178,
+          "loc": {
+            "start": {
+              "line": 38,
+              "column": 0
+            },
+            "end": {
+              "line": 38,
+              "column": 63
+            }
+          },
+          "range": [
+            2115,
+            2178
+          ]
+        }
+      ]
+    }
+  ]
+}
