@@ -32,7 +32,7 @@
 <nav class="navigation" data-ice="nav"><div>
   <ul>
     
-  <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-createActionBlueprint">createActionBlueprint</a></span></span></li>
+  <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-createBlueprint">createBlueprint</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-createBlueprintsTranslator">createBlueprintsTranslator</a></span></span></li>
 </ul>
 </div>
@@ -57,13 +57,13 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="variable/index.html#static-variable-createActionBlueprint">createActionBlueprint</a></span></span><span data-ice="signature">: <span>*</span></span>
+           <span data-ice="name"><span><a href="variable/index.html#static-variable-createBlueprint">createBlueprint</a></span></span><span data-ice="signature">(actionName: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span>, payloadCreator: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span>, metaCreator: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span>: <span>*</span></span>
         </p>
       </div>
       <div>
         
         
-        <div data-ice="description"><p>Allows the user of lib to define custom redux actions that an action creator retrieved from at a later time via a type map.</p>
+        <div data-ice="description"><p>Creates an action blueprint.</p>
 </div>
       </div>
     </td>
@@ -83,13 +83,13 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="variable/index.html#static-variable-createBlueprintsTranslator">createBlueprintsTranslator</a></span></span><span data-ice="signature">: <span>*</span></span>
+           <span data-ice="name"><span><a href="variable/index.html#static-variable-createBlueprintsTranslator">createBlueprintsTranslator</a></span></span><span data-ice="signature">(createActionType: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span>): <span>actionCreator</span>: <span>*</span></span>
         </p>
       </div>
       <div>
         
         
-        <div data-ice="description"><p>Creates a translator that turns actionBlueprints into actionCreators</p>
+        <div data-ice="description"><p>Creates a translator that turns actionBlueprints into redux-actions FSA actionCreators</p>
 </div>
       </div>
     </td>

@@ -1,8 +1,8 @@
 window.esdocSearchIndex = [
   [
-    "redux-blueprint~createactionblueprint",
-    "variable/index.html#static-variable-createActionBlueprint",
-    "<span>createActionBlueprint</span> <span class=\"search-result-import-path\">redux-blueprint</span>",
+    "redux-blueprint~createblueprint",
+    "variable/index.html#static-variable-createBlueprint",
+    "<span>createBlueprint</span> <span class=\"search-result-import-path\">redux-blueprint</span>",
     "variable"
   ],
   [

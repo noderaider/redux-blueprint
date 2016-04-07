@@ -32,7 +32,7 @@
 <nav class="navigation" data-ice="nav"><div>
   <ul>
     
-  <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-createActionBlueprint">createActionBlueprint</a></span></span></li>
+  <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-createBlueprint">createBlueprint</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-createBlueprintsTranslator">createBlueprintsTranslator</a></span></span></li>
 </ul>
 </div>
@@ -54,13 +54,13 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="variable/index.html#static-variable-createActionBlueprint">createActionBlueprint</a></span></span><span data-ice="signature">: <span>*</span></span>
+           <span data-ice="name"><span><a href="variable/index.html#static-variable-createBlueprint">createBlueprint</a></span></span><span data-ice="signature">(actionName: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span>, payloadCreator: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span>, metaCreator: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span>: <span>*</span></span>
         </p>
       </div>
       <div>
         
         
-        <div data-ice="description"><p>Allows the user of lib to define custom redux actions that an action creator retrieved from at a later time via a type map.</p>
+        <div data-ice="description"><p>Creates an action blueprint.</p>
 </div>
       </div>
     </td>
@@ -80,13 +80,13 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="variable/index.html#static-variable-createBlueprintsTranslator">createBlueprintsTranslator</a></span></span><span data-ice="signature">: <span>*</span></span>
+           <span data-ice="name"><span><a href="variable/index.html#static-variable-createBlueprintsTranslator">createBlueprintsTranslator</a></span></span><span data-ice="signature">(createActionType: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span>): <span>actionCreator</span>: <span>*</span></span>
         </p>
       </div>
       <div>
         
         
-        <div data-ice="description"><p>Creates a translator that turns actionBlueprints into actionCreators</p>
+        <div data-ice="description"><p>Creates a translator that turns actionBlueprints into redux-actions FSA actionCreators</p>
 </div>
       </div>
     </td>
@@ -101,24 +101,24 @@
 <div data-ice="details"><h2 data-ice="title">Static Public </h2>
 
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="static-variable-createActionBlueprint">
+  <h3 data-ice="anchor" id="static-variable-createBlueprint">
     <span class="access" data-ice="access">public</span>
     
     
     
     
-    <span data-ice="name">createActionBlueprint</span><span data-ice="signature">: <span>*</span></span>
+    <span data-ice="name">createBlueprint</span><span data-ice="signature">(actionName: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span>, payloadCreator: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span>, metaCreator: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span>: <span>*</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/lib/index.js.html#lineNumber13">source</a></span></span>
+      <span data-ice="source"><span><a href="file/lib/index.js.html#lineNumber23">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {createActionBlueprint} from &apos;<span><a href="file/lib/index.js.html#lineNumber13">redux-blueprint</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {createBlueprint} from &apos;<span><a href="file/lib/index.js.html#lineNumber23">redux-blueprint</a></span>&apos;</code></pre></div>
   
   
-  <div data-ice="description"><p>Allows the user of lib to define custom redux actions that an action creator retrieved from at a later time via a type map.</p>
+  <div data-ice="description"><p>Creates an action blueprint. Allows delayed assignment of action type which is useful for library designers requiring namespaced action types.</p>
 </div>
 
   
@@ -126,7 +126,18 @@
   <div data-ice="properties">
 </div>
 
-  
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tr>
+        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>An action blueprint function that accepts an action type creator function as param to return an action creator.</p>
+</td>
+      </tr>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
 
   
 
@@ -134,7 +145,16 @@
 
   
 
-  
+  <div data-ice="example">
+    <h4>Example:</h4>
+    
+  <div class="example-doc" data-ice="exampleDoc">
+      <div class="example-caption" data-ice="exampleCaption">Create an action blueprint then translate it to get its action creator at a later time.</div>
+      <pre class="prettyprint source-code"><code data-ice="exampleCode">const createActionType = actionName =&gt; `SOME_REDUX_LIB_${actionName}`
+let blueprint = createBlueprint(&apos;MOUSE_EVENT&apos;, (x, y) =&gt; ({x, y}), eventType =&gt; ({ eventType }))
+let actionCreator = blueprint(createActionType)</code></pre>
+    </div>
+</div>
 
   
 
@@ -148,18 +168,18 @@
     
     
     
-    <span data-ice="name">createBlueprintsTranslator</span><span data-ice="signature">: <span>*</span></span>
+    <span data-ice="name">createBlueprintsTranslator</span><span data-ice="signature">(createActionType: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span>): <span>actionCreator</span>: <span>*</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/lib/index.js.html#lineNumber20">source</a></span></span>
+      <span data-ice="source"><span><a href="file/lib/index.js.html#lineNumber33">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {createBlueprintsTranslator} from &apos;<span><a href="file/lib/index.js.html#lineNumber20">redux-blueprint</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {createBlueprintsTranslator} from &apos;<span><a href="file/lib/index.js.html#lineNumber33">redux-blueprint</a></span>&apos;</code></pre></div>
   
   
-  <div data-ice="description"><p>Creates a translator that turns actionBlueprints into actionCreators</p>
+  <div data-ice="description"><p>Creates a translator that turns actionBlueprints into redux-actions FSA actionCreators</p>
 </div>
 
   
@@ -167,7 +187,18 @@
   <div data-ice="properties">
 </div>
 
-  
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tr>
+        <td class="return-type" data-ice="returnType"><span>actionCreator</span></td>
+        <td class="return-desc" data-ice="returnDescription"><p>An redux-actions FSA action creator</p>
+</td>
+      </tr>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
 
   
 

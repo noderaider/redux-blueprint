@@ -10,22 +10,65 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import { assert } from 'chai'\r\nimport { createAction } from 'redux-actions'\r\n/**\r\n * Configures a Flux Standard Action creator injected with the libraries dispatcher and context.\r\n * @example <caption>Exports a Flux Standard Action creator that takes a handler injected with the libraries dispatcher and context.\r\n * export const createSomeUserAction = configureDispatcherAction((dispatcher, context) => dispatcher.action.execute('create-some-user-action'))\r\n * @param  {function} handler: (context, dispatcher) => { ... }\r\n */\r\n//export const createActionDispatcher = context => handler => store => handler(dispatcher(dispatch, getState), context)\r\n\r\n\r\n/** Allows the user of lib to define custom redux actions that an action creator retrieved from at a later time via a type map. */\r\nexport const createActionBlueprint = (actionName, payloadCreator = args => args, metaCreator = args => args) => createActionType => {\r\n  //console.warn('CREATING ACTION BLUEPRINT', actionName, payloadCreator, metaCreator)\r\n  return createAction(createActionType(actionName), args => payloadCreator(args), args => metaCreator(args))\r\n\r\n}\r\n\r\n/** Creates a translator that turns actionBlueprints into actionCreators */\r\nexport const createBlueprintsTranslator = createActionType => actionBlueprints => {\r\n  assert.ok(actionBlueprints, 'actionBlueprints are required')\r\n  if(Array.isArray(actionBlueprints))\r\n    return actionBlueprints.map(x => actionBlueprints(createActionType))\r\n  assert(typeof actionBlueprints === 'object', 'actionBlueprints must be array or object')\r\n  return Object.keys(actionBlueprints).reduce((actionCreators, x) => {\r\n    actionCreators[x] = actionBlueprints[x](createActionType)\r\n    return actionCreators\r\n  }, {})\r\n}\r\n\r\n//export const createDelayableActionBlueprint = (actionName, payloadCreator, metaCreator) => delay => createActionBlueprint(actionName, payloadCreator, meta => Object.assign(metaCreator(meta), { delay }))\r\n\r\n// metaCreator(meta) === Object.assign(meta, { delay })\r\n// delayableActionBlueprint(delay) === actionBlueprint\r\n\r\n// actionBlueprint(createActionType) === actionCreator\r\n\r\n// actionDefinition === { type, payloadCreactor, ?metaCreator }\r\n"
+    "content": "import { assert } from 'chai'\r\nimport { createAction } from 'redux-actions'\r\n/**\r\n * Configures a Flux Standard Action creator injected with the libraries dispatcher and context.\r\n * @example <caption>Exports a Flux Standard Action creator that takes a handler injected with the libraries dispatcher and context.\r\n * export const createSomeUserAction = configureDispatcherAction((dispatcher, context) => dispatcher.action.execute('create-some-user-action'))\r\n * @param  {function} handler: (context, dispatcher) => { ... }\r\n */\r\n//export const createActionDispatcher = context => handler => store => handler(dispatcher(dispatch, getState), context)\r\n\r\n\r\n/**\r\n * Creates an action blueprint. Allows delayed assignment of action type which is useful for library designers requiring namespaced action types.\r\n * @example <caption>Create an action blueprint then translate it to get its action creator at a later time.</caption>\r\n * const createActionType = actionName => `SOME_REDUX_LIB_${actionName}`\r\n * let blueprint = createBlueprint('MOUSE_EVENT', (x, y) => ({x, y}), eventType => ({ eventType }))\r\n * let actionCreator = blueprint(createActionType)\r\n * @param  {String}   actionName     The name of the action (will be constructed at later time to get action type.)\r\n * @param  {Function} payloadCreator Function that accepts action args and returns a FSA action payload.\r\n * @param  {Function} metaCreator    Function that accepts action args and returns a FSA meta payload.\r\n * @return {Function}                An action blueprint function that accepts an action type creator function as param to return an action creator.\r\n */\r\nexport const createBlueprint = (actionName, payloadCreator = args => args, metaCreator = args => args) => createActionType => {\r\n  return createAction(createActionType(actionName), args => payloadCreator(args), args => metaCreator(args))\r\n}\r\n\r\n\r\n/**\r\n * Creates a translator that turns actionBlueprints into redux-actions FSA actionCreators\r\n * @param  {Function} createActionType    Function that accepts an action name and returns an action type\r\n * @return {actionCreator}                An redux-actions FSA action creator\r\n */\r\nexport const createBlueprintsTranslator = createActionType => blueprints => {\r\n  assert.ok(blueprints, 'blueprints are required')\r\n  if(Array.isArray(blueprints))\r\n    return blueprints.map(x => blueprint(createActionType))\r\n  assert(typeof blueprints === 'object', 'blueprints must be array or object')\r\n  return Object.keys(blueprints).reduce((actionCreators, x) => {\r\n    actionCreators[x] = blueprints[x](createActionType)\r\n    return actionCreators\r\n  }, {})\r\n}\r\n"
   },
   {
     "__docId__": 1,
     "kind": "variable",
     "static": true,
     "variation": null,
-    "name": "createActionBlueprint",
+    "name": "createBlueprint",
     "memberof": "lib/index.js",
-    "longname": "lib/index.js~createActionBlueprint",
+    "longname": "lib/index.js~createBlueprint",
     "access": null,
     "export": true,
     "importPath": "redux-blueprint",
-    "importStyle": "{createActionBlueprint}",
-    "description": "Allows the user of lib to define custom redux actions that an action creator retrieved from at a later time via a type map.",
-    "lineNumber": 13,
+    "importStyle": "{createBlueprint}",
+    "description": "Creates an action blueprint. Allows delayed assignment of action type which is useful for library designers requiring namespaced action types.",
+    "examples": [
+      "<caption>Create an action blueprint then translate it to get its action creator at a later time.</caption>\nconst createActionType = actionName => `SOME_REDUX_LIB_${actionName}`\nlet blueprint = createBlueprint('MOUSE_EVENT', (x, y) => ({x, y}), eventType => ({ eventType }))\nlet actionCreator = blueprint(createActionType)"
+    ],
+    "lineNumber": 23,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "actionName",
+        "description": "The name of the action (will be constructed at later time to get action type.)"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Function"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "payloadCreator",
+        "description": "Function that accepts action args and returns a FSA action payload."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Function"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "metaCreator",
+        "description": "Function that accepts action args and returns a FSA meta payload."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Function"
+      ],
+      "spread": false,
+      "description": "An action blueprint function that accepts an action type creator function as param to return an action creator."
+    },
     "type": {
       "types": [
         "*"
@@ -44,8 +87,28 @@
     "export": true,
     "importPath": "redux-blueprint",
     "importStyle": "{createBlueprintsTranslator}",
-    "description": "Creates a translator that turns actionBlueprints into actionCreators",
-    "lineNumber": 20,
+    "description": "Creates a translator that turns actionBlueprints into redux-actions FSA actionCreators",
+    "lineNumber": 33,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Function"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "createActionType",
+        "description": "Function that accepts an action name and returns an action type"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "actionCreator"
+      ],
+      "spread": false,
+      "description": "An redux-actions FSA action creator"
+    },
     "type": {
       "types": [
         "*"
