@@ -172,11 +172,11 @@ let actionCreator = blueprint(createActionType)</code></pre>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/lib/index.js.html#lineNumber25">source</a></span></span>
+      <span data-ice="source"><span><a href="file/lib/index.js.html#lineNumber32">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {createBlueprintsTranslator} from &apos;<span><a href="file/lib/index.js.html#lineNumber25">redux-blueprint</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {createBlueprintsTranslator} from &apos;<span><a href="file/lib/index.js.html#lineNumber32">redux-blueprint</a></span>&apos;</code></pre></div>
   
   
   <div data-ice="description"><p>Creates a translator that turns actionBlueprints into redux-actions FSA actionCreators</p>
@@ -192,7 +192,7 @@ let actionCreator = blueprint(createActionType)</code></pre>
     <table>
       <tr>
         <td class="return-type" data-ice="returnType"><span>actionCreator</span></td>
-        <td class="return-desc" data-ice="returnDescription"><p>An redux-actions FSA action creator</p>
+        <td class="return-desc" data-ice="returnDescription"><p>A redux-actions FSA action creator</p>
 </td>
       </tr>
     </table>
@@ -206,7 +206,19 @@ let actionCreator = blueprint(createActionType)</code></pre>
 
   
 
-  
+  <div data-ice="example">
+    <h4>Example:</h4>
+    
+  <div class="example-doc" data-ice="exampleDoc">
+      <div class="example-caption" data-ice="exampleCaption">Creates a function that can translate an array or object literal with blueprint values to actions.</div>
+      <pre class="prettyprint source-code"><code data-ice="exampleCode">const createActionType = actionName =&gt; `SOME_REDUX_LIB_${actionName}`
+const translateBlueprints = createBlueprintsTranslator(createActionType)
+let startBlueprint = createBlueprint(&apos;START&apos;)
+let endBlueprint = createBlueprint(&apos;END&apos;)
+let { startAction, endAction } = translateBlueprints({ startAction: startBlueprint, endAction: endBlueprint })
+dispatch(startAction())</code></pre>
+    </div>
+</div>
 
   
 
