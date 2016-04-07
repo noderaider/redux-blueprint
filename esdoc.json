@@ -8,5 +8,5 @@
   "plugins": [
     {"name": "esdoc-es7-plugin"}
   ],
-  "title": "redux-redux-idle-monitor"
+  "title": "redux-blueprint"
 }
