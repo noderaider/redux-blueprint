@@ -1,6 +1,6 @@
 {
   "name": "redux-blueprint",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Abstracted actions for redux (WIP)",
   "main": "lib/index.js",
   "files": [
