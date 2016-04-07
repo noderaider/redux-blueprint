@@ -1,6 +1,6 @@
 {
   "name": "redux-blueprint",
-  "version": "0.2.9",
+  "version": "0.2.10",
   "description": "Abstracted actions for redux (WIP)",
   "main": "lib/index.js",
   "files": [
@@ -24,7 +24,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cchamberlain/react-blueprint.git"
+    "url": "git+https://github.com/cchamberlain/redux-blueprint.git"
   },
   "keywords": [
     "redux",
@@ -44,7 +44,7 @@
   "author": "Cole Chamberlain <cole.chamberlain@gmail.com> (https://github.com/cchamberlain)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/cchamberlain/react-blueprint/issues"
+    "url": "https://github.com/cchamberlain/redux-blueprint/issues"
   },
-  "homepage": "https://cchamberlain.github.io/react-blueprint"
+  "homepage": "https://cchamberlain.github.io/redux-blueprint"
 }
