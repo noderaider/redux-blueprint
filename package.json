@@ -1,7 +1,7 @@
 {
-  "name": "react-redux-idle-monitor",
-  "version": "0.1.3",
-  "description": "React higher order component for redux-idle-monitor (WIP)",
+  "name": "redux-blueprint",
+  "version": "0.1.0",
+  "description": "Abstracted actions for redux (WIP)",
   "main": "lib/index.js",
   "files": [
     "lib",
@@ -24,7 +24,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cchamberlain/react-redux-idle-monitor.git"
+    "url": "git+https://github.com/cchamberlain/react-blueprint.git"
   },
   "keywords": [
     "redux",
@@ -48,7 +48,7 @@
   "author": "Cole Chamberlain <cole.chamberlain@gmail.com> (https://github.com/cchamberlain)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/cchamberlain/react-redux-idle-monitor/issues"
+    "url": "https://github.com/cchamberlain/react-blueprint/issues"
   },
-  "homepage": "https://cchamberlain.github.io/react-redux-idle-monitor"
+  "homepage": "https://cchamberlain.github.io/react-blueprint"
 }

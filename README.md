@@ -1,5 +1,5 @@
-# react-redux-idle-monitor
+# redux-blueprint
 
-React Redux higher order component for idle state monitoring.
+Redux abstractions for actions.
 
 **This project is in active development and is not ready for production use.**
