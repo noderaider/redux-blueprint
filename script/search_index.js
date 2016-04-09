@@ -6,9 +6,15 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "redux-blueprint~createblueprintstranslator",
-    "variable/index.html#static-variable-createBlueprintsTranslator",
-    "<span>createBlueprintsTranslator</span> <span class=\"search-result-import-path\">redux-blueprint</span>",
+    "redux-blueprint~translateblueprinttypeswith",
+    "variable/index.html#static-variable-translateBlueprintTypesWith",
+    "<span>translateBlueprintTypesWith</span> <span class=\"search-result-import-path\">redux-blueprint</span>",
+    "variable"
+  ],
+  [
+    "redux-blueprint~translateblueprintswith",
+    "variable/index.html#static-variable-translateBlueprintsWith",
+    "<span>translateBlueprintsWith</span> <span class=\"search-result-import-path\">redux-blueprint</span>",
     "variable"
   ],
   [

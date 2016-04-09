@@ -10,7 +10,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import { assert } from 'chai'\r\nimport { createAction } from 'redux-actions'\r\n\r\n/**\r\n * Creates an action blueprint. Allows delayed assignment of action type which is useful for library designers requiring namespaced action types.\r\n * @example <caption>Create an action blueprint then translate it to get its action creator at a later time.</caption>\r\n * const createActionType = actionName => `SOME_REDUX_LIB_${actionName}`\r\n * let blueprint = createBlueprint('MOUSE_EVENT', (x, y) => ({x, y}), eventType => ({ eventType }))\r\n * let actionCreator = blueprint(createActionType)\r\n * @param  {String}   actionName     The name of the action (will be constructed at later time to get action type.)\r\n * @param  {Function} payloadCreator Function that accepts action args and returns a FSA action payload.\r\n * @param  {Function} metaCreator    Function that accepts action args and returns a FSA meta payload.\r\n * @return {Function}                An action blueprint function that accepts an action type creator function as param to return an action creator.\r\n */\r\nexport const createBlueprint = (actionName, payloadCreator = args => args, metaCreator = args => args) => createActionType => {\r\n  return createAction(createActionType(actionName), args => payloadCreator(args), args => metaCreator(args))\r\n}\r\n\r\n\r\n/**\r\n * Creates a translator that turns actionBlueprints into redux-actions FSA actionCreators\r\n * @example <caption>Creates a function that can translate an array or object literal with blueprint values to actions.</caption>\r\n * const createActionType = actionName => `SOME_REDUX_LIB_${actionName}`\r\n * const translateBlueprints = createBlueprintsTranslator(createActionType)\r\n * let startBlueprint = createBlueprint('START')\r\n * let endBlueprint = createBlueprint('END')\r\n * let { startAction, endAction } = translateBlueprints({ startAction: startBlueprint, endAction: endBlueprint })\r\n * dispatch(startAction())\r\n * @param  {Function} createActionType    Function that accepts an action name and returns an action type\r\n * @return {actionCreator}                A redux-actions FSA action creator\r\n */\r\nexport const createBlueprintsTranslator = createActionType => blueprints => {\r\n  assert.ok(blueprints, 'blueprints are required')\r\n  if(Array.isArray(blueprints))\r\n    return blueprints.map(x => blueprint(createActionType))\r\n  assert(typeof blueprints === 'object', 'blueprints must be array or object')\r\n  return Object.keys(blueprints).reduce((actionCreators, x) => {\r\n    actionCreators[x] = blueprints[x](createActionType)\r\n    return actionCreators\r\n  }, {})\r\n}\r\n"
+    "content": "import { assert } from 'chai'\r\nimport { createAction } from 'redux-actions'\r\n\r\n/**\r\n * Creates an action blueprint. Allows delayed assignment of action type which is useful for library designers requiring namespaced action types.\r\n * @example <caption>Create an action blueprint then translate it to get its action creator at a later time.</caption>\r\n * const createActionType = blueprintType => `SOME_REDUX_LIB_${blueprintType}`\r\n * let blueprint = createBlueprint('MOUSE_EVENT', (x, y) => ({x, y}), eventType => ({ eventType }))\r\n * let actionCreator = blueprint(createActionType)\r\n * @param  {String}   blueprintType  The name of the action (will be constructed at later time to get action type.)\r\n * @param  {Function} payloadCreator Function that accepts action args and returns a FSA action payload.\r\n * @param  {Function} metaCreator    Function that accepts action args and returns a FSA meta payload.\r\n * @return {Function}                An action blueprint function that accepts an action type creator function as param to return an action creator.\r\n */\r\nexport const createBlueprint = (blueprintType, payloadCreator = args => args, metaCreator = args => args) => translateBlueprintType => {\r\n  return createAction(translateBlueprintType(blueprintType), args => payloadCreator(args), args => metaCreator(args))\r\n}\r\n\r\n\r\n\r\n/**\r\n * Creates a translator that turns blueprint types into action types.\r\n * @param  {Function} translateBlueprintType  Function that accepts an action name and returns an action type.\r\n * @return {blueprintTypeTranslator}          Function that accepts array or object of blueprint type values and returns action types.\r\n */\r\nexport const translateBlueprintTypesWith = translateBlueprintType => blueprintTypes => {\r\n  assert.ok(blueprintTypes, 'blueprint types are required')\r\n  if(Array.isArray(blueprintTypes))\r\n    return blueprintTypes.map(x => translateBlueprintType(x))\r\n  assert(typeof blueprintTypes === 'object', 'blueprint types must be array or object')\r\n  return Object.keys(blueprintTypes).reduce((actionTypes, x) => {\r\n    actionTypes[x] = translateBlueprintType(blueprintTypes[x])\r\n    return actionTypes\r\n  }, {})\r\n}\r\n\r\n\r\n/**\r\n * Creates a translator that turns blueprints into redux-actions FSA actionCreators\r\n * @example <caption>Creates a function that can translate an array or object literal with blueprint values to actions.</caption>\r\n * const translateBlueprintType = blueprintType => `SOME_REDUX_LIB_${blueprintType}`\r\n * const translateBlueprints = translateBlueprintsWith(translateBlueprintType)\r\n * let startBlueprint = createBlueprint('START')\r\n * let endBlueprint = createBlueprint('END')\r\n * let { startAction, endAction } = translateBlueprints({ startAction: startBlueprint, endAction: endBlueprint })\r\n * dispatch(startAction())\r\n * @param  {Function} translateBlueprintType  Function that accepts an action name and returns an action type.\r\n * @return {blueprintTranslator}              Function that accepts array or object of blueprint values and returns redux-actions FSA actionCreators.\r\n */\r\nexport const translateBlueprintsWith = translateBlueprintType => blueprints => {\r\n  assert.ok(blueprints, 'blueprints are required')\r\n  if(Array.isArray(blueprints))\r\n    return blueprints.map(x => blueprint(translateBlueprintType))\r\n  assert(typeof blueprints === 'object', 'blueprints must be array or object')\r\n  return Object.keys(blueprints).reduce((actionCreators, x) => {\r\n    actionCreators[x] = blueprints[x](translateBlueprintType)\r\n    return actionCreators\r\n  }, {})\r\n}\r\n"
   },
   {
     "__docId__": 1,
@@ -26,7 +26,7 @@
     "importStyle": "{createBlueprint}",
     "description": "Creates an action blueprint. Allows delayed assignment of action type which is useful for library designers requiring namespaced action types.",
     "examples": [
-      "<caption>Create an action blueprint then translate it to get its action creator at a later time.</caption>\nconst createActionType = actionName => `SOME_REDUX_LIB_${actionName}`\nlet blueprint = createBlueprint('MOUSE_EVENT', (x, y) => ({x, y}), eventType => ({ eventType }))\nlet actionCreator = blueprint(createActionType)"
+      "<caption>Create an action blueprint then translate it to get its action creator at a later time.</caption>\nconst createActionType = blueprintType => `SOME_REDUX_LIB_${blueprintType}`\nlet blueprint = createBlueprint('MOUSE_EVENT', (x, y) => ({x, y}), eventType => ({ eventType }))\nlet actionCreator = blueprint(createActionType)"
     ],
     "lineNumber": 15,
     "params": [
@@ -37,7 +37,7 @@
         ],
         "spread": false,
         "optional": false,
-        "name": "actionName",
+        "name": "blueprintType",
         "description": "The name of the action (will be constructed at later time to get action type.)"
       },
       {
@@ -80,18 +80,15 @@
     "kind": "variable",
     "static": true,
     "variation": null,
-    "name": "createBlueprintsTranslator",
+    "name": "translateBlueprintTypesWith",
     "memberof": "lib/index.js",
-    "longname": "lib/index.js~createBlueprintsTranslator",
+    "longname": "lib/index.js~translateBlueprintTypesWith",
     "access": null,
     "export": true,
     "importPath": "redux-blueprint",
-    "importStyle": "{createBlueprintsTranslator}",
-    "description": "Creates a translator that turns actionBlueprints into redux-actions FSA actionCreators",
-    "examples": [
-      "<caption>Creates a function that can translate an array or object literal with blueprint values to actions.</caption>\nconst createActionType = actionName => `SOME_REDUX_LIB_${actionName}`\nconst translateBlueprints = createBlueprintsTranslator(createActionType)\nlet startBlueprint = createBlueprint('START')\nlet endBlueprint = createBlueprint('END')\nlet { startAction, endAction } = translateBlueprints({ startAction: startBlueprint, endAction: endBlueprint })\ndispatch(startAction())"
-    ],
-    "lineNumber": 32,
+    "importStyle": "{translateBlueprintTypesWith}",
+    "description": "Creates a translator that turns blueprint types into action types.",
+    "lineNumber": 26,
     "params": [
       {
         "nullable": null,
@@ -100,17 +97,17 @@
         ],
         "spread": false,
         "optional": false,
-        "name": "createActionType",
-        "description": "Function that accepts an action name and returns an action type"
+        "name": "translateBlueprintType",
+        "description": "Function that accepts an action name and returns an action type."
       }
     ],
     "return": {
       "nullable": null,
       "types": [
-        "actionCreator"
+        "blueprintTypeTranslator"
       ],
       "spread": false,
-      "description": "A redux-actions FSA action creator"
+      "description": "Function that accepts array or object of blueprint type values and returns action types."
     },
     "type": {
       "types": [
@@ -119,7 +116,50 @@
     }
   },
   {
-    "__docId__": 4,
+    "__docId__": 3,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "translateBlueprintsWith",
+    "memberof": "lib/index.js",
+    "longname": "lib/index.js~translateBlueprintsWith",
+    "access": null,
+    "export": true,
+    "importPath": "redux-blueprint",
+    "importStyle": "{translateBlueprintsWith}",
+    "description": "Creates a translator that turns blueprints into redux-actions FSA actionCreators",
+    "examples": [
+      "<caption>Creates a function that can translate an array or object literal with blueprint values to actions.</caption>\nconst translateBlueprintType = blueprintType => `SOME_REDUX_LIB_${blueprintType}`\nconst translateBlueprints = translateBlueprintsWith(translateBlueprintType)\nlet startBlueprint = createBlueprint('START')\nlet endBlueprint = createBlueprint('END')\nlet { startAction, endAction } = translateBlueprints({ startAction: startBlueprint, endAction: endBlueprint })\ndispatch(startAction())"
+    ],
+    "lineNumber": 50,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Function"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "translateBlueprintType",
+        "description": "Function that accepts an action name and returns an action type."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "blueprintTranslator"
+      ],
+      "spread": false,
+      "description": "Function that accepts array or object of blueprint values and returns redux-actions FSA actionCreators."
+    },
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 5,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -132,7 +172,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 5,
+    "__docId__": 6,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -145,7 +185,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 6,
+    "__docId__": 7,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -158,7 +198,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 7,
+    "__docId__": 8,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -171,7 +211,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 8,
+    "__docId__": 9,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -184,7 +224,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 9,
+    "__docId__": 10,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -197,7 +237,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 10,
+    "__docId__": 11,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -210,7 +250,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 11,
+    "__docId__": 12,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -223,7 +263,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 12,
+    "__docId__": 13,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -236,7 +276,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 13,
+    "__docId__": 14,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -249,7 +289,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 14,
+    "__docId__": 15,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -262,7 +302,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 15,
+    "__docId__": 16,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -275,7 +315,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 16,
+    "__docId__": 17,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -288,7 +328,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 17,
+    "__docId__": 18,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -301,7 +341,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 18,
+    "__docId__": 19,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -314,7 +354,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 19,
+    "__docId__": 20,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -327,7 +367,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 20,
+    "__docId__": 21,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -340,7 +380,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 21,
+    "__docId__": 22,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -353,7 +393,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 22,
+    "__docId__": 23,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -366,7 +406,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 23,
+    "__docId__": 24,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -379,7 +419,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 24,
+    "__docId__": 25,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -392,7 +432,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 25,
+    "__docId__": 26,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -405,7 +445,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 26,
+    "__docId__": 27,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -418,7 +458,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 27,
+    "__docId__": 28,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -431,7 +471,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 28,
+    "__docId__": 29,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -444,7 +484,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 29,
+    "__docId__": 30,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -457,7 +497,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 30,
+    "__docId__": 31,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -470,7 +510,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 31,
+    "__docId__": 32,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -483,7 +523,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 32,
+    "__docId__": 33,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -496,7 +536,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 33,
+    "__docId__": 34,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -509,7 +549,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 34,
+    "__docId__": 35,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -522,7 +562,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 35,
+    "__docId__": 36,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -535,7 +575,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 36,
+    "__docId__": 37,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -548,7 +588,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 37,
+    "__docId__": 38,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -561,7 +601,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 38,
+    "__docId__": 39,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -574,7 +614,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 39,
+    "__docId__": 40,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -587,7 +627,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 40,
+    "__docId__": 41,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -600,7 +640,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 41,
+    "__docId__": 42,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -613,7 +653,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 42,
+    "__docId__": 43,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -626,7 +666,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 43,
+    "__docId__": 44,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -639,7 +679,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 44,
+    "__docId__": 45,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -652,7 +692,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 45,
+    "__docId__": 46,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -665,7 +705,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 46,
+    "__docId__": 47,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -678,7 +718,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 47,
+    "__docId__": 48,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -691,7 +731,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 48,
+    "__docId__": 49,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -704,7 +744,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 49,
+    "__docId__": 50,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -717,7 +757,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 50,
+    "__docId__": 51,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -730,7 +770,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 52,
+    "__docId__": 53,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -743,7 +783,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 53,
+    "__docId__": 54,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -756,7 +796,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 54,
+    "__docId__": 55,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -769,7 +809,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 55,
+    "__docId__": 56,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -782,7 +822,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 56,
+    "__docId__": 57,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -795,7 +835,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 57,
+    "__docId__": 58,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -808,7 +848,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 58,
+    "__docId__": 59,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -821,7 +861,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 59,
+    "__docId__": 60,
     "kind": "external",
     "static": true,
     "variation": null,
