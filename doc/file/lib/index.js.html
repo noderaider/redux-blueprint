@@ -33,7 +33,8 @@
   <ul>
     
   <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-createBlueprint">createBlueprint</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-createBlueprintsTranslator">createBlueprintsTranslator</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-translateBlueprintTypesWith">translateBlueprintTypesWith</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-translateBlueprintsWith">translateBlueprintsWith</a></span></span></li>
 </ul>
 </div>
 </nav>
@@ -45,38 +46,56 @@ import { createAction } from &apos;redux-actions&apos;
 /**
  * Creates an action blueprint. Allows delayed assignment of action type which is useful for library designers requiring namespaced action types.
  * @example &lt;caption&gt;Create an action blueprint then translate it to get its action creator at a later time.&lt;/caption&gt;
- * const createActionType = actionName =&gt; `SOME_REDUX_LIB_${actionName}`
+ * const createActionType = blueprintType =&gt; `SOME_REDUX_LIB_${blueprintType}`
  * let blueprint = createBlueprint(&apos;MOUSE_EVENT&apos;, (x, y) =&gt; ({x, y}), eventType =&gt; ({ eventType }))
  * let actionCreator = blueprint(createActionType)
- * @param  {String}   actionName     The name of the action (will be constructed at later time to get action type.)
+ * @param  {String}   blueprintType  The name of the action (will be constructed at later time to get action type.)
  * @param  {Function} payloadCreator Function that accepts action args and returns a FSA action payload.
  * @param  {Function} metaCreator    Function that accepts action args and returns a FSA meta payload.
  * @return {Function}                An action blueprint function that accepts an action type creator function as param to return an action creator.
  */
-export const createBlueprint = (actionName, payloadCreator = args =&gt; args, metaCreator = args =&gt; args) =&gt; createActionType =&gt; {
-  return createAction(createActionType(actionName), args =&gt; payloadCreator(args), args =&gt; metaCreator(args))
+export const createBlueprint = (blueprintType, payloadCreator = args =&gt; args, metaCreator = args =&gt; args) =&gt; translateBlueprintType =&gt; {
+  return createAction(translateBlueprintType(blueprintType), args =&gt; payloadCreator(args), args =&gt; metaCreator(args))
+}
+
+
+
+/**
+ * Creates a translator that turns blueprint types into action types.
+ * @param  {Function} translateBlueprintType  Function that accepts an action name and returns an action type.
+ * @return {blueprintTypeTranslator}          Function that accepts array or object of blueprint type values and returns action types.
+ */
+export const translateBlueprintTypesWith = translateBlueprintType =&gt; blueprintTypes =&gt; {
+  assert.ok(blueprintTypes, &apos;blueprint types are required&apos;)
+  if(Array.isArray(blueprintTypes))
+    return blueprintTypes.map(x =&gt; translateBlueprintType(x))
+  assert(typeof blueprintTypes === &apos;object&apos;, &apos;blueprint types must be array or object&apos;)
+  return Object.keys(blueprintTypes).reduce((actionTypes, x) =&gt; {
+    actionTypes[x] = translateBlueprintType(blueprintTypes[x])
+    return actionTypes
+  }, {})
 }
 
 
 /**
- * Creates a translator that turns actionBlueprints into redux-actions FSA actionCreators
+ * Creates a translator that turns blueprints into redux-actions FSA actionCreators
  * @example &lt;caption&gt;Creates a function that can translate an array or object literal with blueprint values to actions.&lt;/caption&gt;
- * const createActionType = actionName =&gt; `SOME_REDUX_LIB_${actionName}`
- * const translateBlueprints = createBlueprintsTranslator(createActionType)
+ * const translateBlueprintType = blueprintType =&gt; `SOME_REDUX_LIB_${blueprintType}`
+ * const translateBlueprints = translateBlueprintsWith(translateBlueprintType)
  * let startBlueprint = createBlueprint(&apos;START&apos;)
  * let endBlueprint = createBlueprint(&apos;END&apos;)
  * let { startAction, endAction } = translateBlueprints({ startAction: startBlueprint, endAction: endBlueprint })
  * dispatch(startAction())
- * @param  {Function} createActionType    Function that accepts an action name and returns an action type
- * @return {actionCreator}                A redux-actions FSA action creator
+ * @param  {Function} translateBlueprintType  Function that accepts an action name and returns an action type.
+ * @return {blueprintTranslator}              Function that accepts array or object of blueprint values and returns redux-actions FSA actionCreators.
  */
-export const createBlueprintsTranslator = createActionType =&gt; blueprints =&gt; {
+export const translateBlueprintsWith = translateBlueprintType =&gt; blueprints =&gt; {
   assert.ok(blueprints, &apos;blueprints are required&apos;)
   if(Array.isArray(blueprints))
-    return blueprints.map(x =&gt; blueprint(createActionType))
+    return blueprints.map(x =&gt; blueprint(translateBlueprintType))
   assert(typeof blueprints === &apos;object&apos;, &apos;blueprints must be array or object&apos;)
   return Object.keys(blueprints).reduce((actionCreators, x) =&gt; {
-    actionCreators[x] = blueprints[x](createActionType)
+    actionCreators[x] = blueprints[x](translateBlueprintType)
     return actionCreators
   }, {})
 }
