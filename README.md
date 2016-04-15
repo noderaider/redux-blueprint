@@ -2,9 +2,7 @@
 
 Redux abstractions for actions.
 
-[![NPM](https://nodei.co/npm/redux-blueprint.png?stars=true&downloadRank=true)](https://nodei.co/npm/redux-blueprint/)
-
-[![NPM](https://nodei.co/npm-dl/redux-blueprint.png?months=1)](https://nodei.co/npm/redux-blueprint/)
+[![NPM](https://nodei.co/npm/redux-blueprint.png?stars=true&downloads=true)](https://nodei.co/npm/redux-blueprint/)
 
 
 `npm i -S redux-blueprint`
