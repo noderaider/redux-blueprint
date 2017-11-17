@@ -1,6 +1,6 @@
 {
   "name": "redux-blueprint",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Abstracted actions for redux (WIP)",
   "main": "lib/index.js",
   "types": "index.d.ts",
@@ -12,9 +12,9 @@
     "preversion": "npm test"
   },
   "dependencies": {
+    "@types/redux-actions": "^2.2.2",
     "invariant": "^2.2.2",
-    "redux-actions": "^2.2.1",
-    "@types/redux-actions": "^2.2.2"
+    "redux-actions": "^2.2.1"
   },
   "devDependencies": {
     "@types/invariant": "^2.2.29",
