@@ -13,12 +13,16 @@ Redux abstractions for actions.
 
 `Action Type Creator: A function that accepts an action name and returns an action type.`
 
+## Usage
+
+```ts
+
+```
+
 ## Reason
 
 When writing a redux library, it is not always a great idea to hardcode every action type as a constant. This would lead to libraries only supporting singleton implementations. If one redux library uses another one, and the action types are not namespaced, the reducers will collide and it will all blow up.
 
 This library allows *blueprints* to be generated that can be later resolved to redux-actions action creators at app run time.
 
-The name for redux-actions createAction function should technically be createActionCreator. That means the technical name for createBlueprint would have been createActionCreatorCreator.  You can probably guess why I started calling them blueprints.
-
-**This project is in active development and is not ready for production use.**
+The name for redux-actions createAction function should technically be createActionCreator. The technical name for createBlueprint would have been createActionCreatorCreator.

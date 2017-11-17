@@ -12,8 +12,8 @@ import { createAction } from "redux-actions";
  * @param  {Function} metaCreator    Function that accepts action args and returns a FSA meta payload.
  * @return {Function}                An action blueprint function that accepts an action type creator function as param to return an action creator.
  */
-export function createBlueprint(blueprintType: string, payloadCreator: ReduxBlueprint.PayloadCreator = args => args, metaCreator: ReduxBlueprint.MetaCreator = args => args): ReduxBlueprint.Blueprint {
-    return (translateBlueprintType: ReduxBlueprint.TranslateBlueprintType) => {
+export function createBlueprint(blueprintType: string, payloadCreator: PayloadCreator = args => args, metaCreator: MetaCreator = args => args): Blueprint {
+    return (translateBlueprintType: TranslateBlueprintType) => {
         return createAction(translateBlueprintType(blueprintType), args => payloadCreator(args), args => metaCreator(args));
     };
 }
@@ -23,7 +23,7 @@ export function createBlueprint(blueprintType: string, payloadCreator: ReduxBlue
  * @param  {Function} translateBlueprintType  Function that accepts an action name and returns an action type.
  * @return {blueprintTypeTranslator}          Function that accepts an object of blueprint type values and returns action types.
  */
-export function translateBlueprintTypesWith(translateBlueprintType: ReduxBlueprint.TranslateBlueprintType) {
+export function translateBlueprintTypesWith(translateBlueprintType: TranslateBlueprintType) {
     return blueprintTypes => {
         invariant(blueprintTypes, "blueprint types are required");
         invariant(typeof blueprintTypes === "object", "blueprint types must be array or object");
@@ -46,8 +46,8 @@ export function translateBlueprintTypesWith(translateBlueprintType: ReduxBluepri
  * @param  {Function} translateBlueprintType  Function that accepts an action name and returns an action type.
  * @return {blueprintTranslator}              Function that accepts an object of blueprint values and returns redux-actions FSA actionCreators.
  */
-export function translateBlueprintsWith(translateBlueprintType: ReduxBlueprint.TranslateBlueprintType) {
-    return (blueprints: ReduxBlueprint.Blueprints) => {
+export function translateBlueprintsWith(translateBlueprintType: TranslateBlueprintType) {
+    return (blueprints: Blueprints) => {
         invariant(blueprints, "blueprints are required");
         invariant(typeof blueprints === "object", "blueprints must be array or object");
         return Object.keys(blueprints).reduce((actionCreators, x) => {
