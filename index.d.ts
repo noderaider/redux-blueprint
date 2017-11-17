@@ -1,25 +1,25 @@
 /// <reference types="redux-actions" />
 
-interface PayloadCreator {
+export interface PayloadCreator {
     (...args: any[]): any;
 }
 
-interface MetaCreator {
+export interface MetaCreator {
     (...args: any[]): any;
 }
 
-interface Blueprints {
+export interface Blueprints {
     [name: string]: Blueprint;
 }
 
-interface Blueprint {
+export interface Blueprint {
     (translateBlueprintType: TranslateBlueprintType): ActionCreator;
 }
 
-interface TranslateBlueprintType {
+export interface TranslateBlueprintType {
     (blueprintType: string): string;
 }
 
-interface ActionCreator {
+export interface ActionCreator {
     (...args: any[]): ReduxActions.ActionMeta<any, any>;
 }
