@@ -1,5 +1,7 @@
 /// <reference types="redux-actions" />
 
+export as namespace ReduxBlueprint;
+
 export interface PayloadCreator {
     (...args: any[]): any;
 }
@@ -23,3 +25,7 @@ export interface TranslateBlueprintType {
 export interface ActionCreator {
     (...args: any[]): ReduxActions.ActionMeta<any, any>;
 }
+
+export function createBlueprint(blueprintType: string, payloadCreator?: ReduxBlueprint.PayloadCreator, metaCreator?: ReduxBlueprint.MetaCreator): ReduxBlueprint.Blueprint;
+export function translateBlueprintTypesWith(translateBlueprintType: ReduxBlueprint.TranslateBlueprintType): any;
+export function translateBlueprintsWith(translateBlueprintType: ReduxBlueprint.TranslateBlueprintType): any;
